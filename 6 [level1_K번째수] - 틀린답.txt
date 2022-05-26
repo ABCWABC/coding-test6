@@ -1,0 +1,59 @@
+// 내가 한 틀린답
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        
+        int[] answer = {};
+        int[] copyArray = {};
+        
+        for(int i=0; i<commands.length; i++){
+			System.arraycopy(array, commands[i][0], copyArray, copyArray[0], (commands[i][1]-commands[i][0]));
+            Arrays.sort(copyArray);
+            answer[i] = copyArray[(commands[i][2])];
+        }
+        
+        return answer;
+    }
+}
+
+// 1차수정 틀린답 - 배열선언 제대로 해줌
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        
+        int[] answer = new int[commands.length];
+        int[] copyArray = new int[50];
+        
+        for(int i=0; i<commands.length; i++){
+			System.arraycopy(array, commands[i][0], copyArray, copyArray[0], (commands[i][1]-commands[i][0]));
+            Arrays.sort(copyArray);
+            answer[i] = copyArray[(commands[i][2])];
+        }
+        
+        return answer;
+    }
+}
+
+// 2차수정 정답 - 배열복사함수 바꿔줌
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        
+        int[] answer = new int[commands.length];
+        int[] copyArray = new int[50];
+        
+        for(int i=0; i<commands.length; i++){
+			copyArray = Arrays.copyOfRange(array,(commands[i][0] - 1), commands[i][1]);
+            Arrays.sort(copyArray);
+            answer[i] = copyArray[((commands[i][2]) - 1)];
+        }
+        
+        return answer;
+    }
+}
